@@ -1,0 +1,28 @@
+<div class="ng2-flex-table">
+    <table class="ng2-flex-table__component">
+        <thead class="ng2-flex-table__header">
+            <tr>
+                <th *ngFor="let head of headerData" [class.sorted]="order === head">
+                    <div class="ng2-flex-table__header__content" (click)="reverse = !reverse; order = head"> 
+                        <span class="ng2-flex-table__header__content__headline"> {{ head }} </span>
+                        <i class="icon" *ngIf="head === order">
+                            <svg *ngIf="reverse" version="1.1" x="0px" y="0px" viewBox="0 0 240.835 240.835" style="enable-background:new 0 0 240.835 240.835;" xml:space="preserve" width="10px" height="10px">
+                            </svg>
+                            <svg *ngIf="!reverse" version="1.1" x="0px" y="0px" viewBox="0 0 240.811 240.811" style="enable-background:new 0 0 240.811 240.811;" xml:space="preserve" width="10px" height="10px">
+                                <path fill="#fff" id="Expand_More" d="M220.088,57.667l-99.671,99.695L20.746,57.655c-4.752-4.752-12.439-4.752-17.191,0   c-4.74,4.752-4.74,12.451,0,17.203l108.261,108.297l0,0l0,0c4.74,4.752,12.439,4.752,17.179,0L237.256,74.859   c4.74-4.752,4.74-12.463,0-17.215C232.528,52.915,224.828,52.915,220.088,57.667z" />
+                            </svg>
+                        </i>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="ng2-flex-table__body" >
+            <tr *ngFor="let d of tabledata | filterBy: filter | orderBy: order : reverse " >
+                <td *ngFor="let column of headerData " (dblclick)="editValue($event, d, column)" [class.sorted]="order === column">
+                    <input class="table__input" type="text" value="{{ d[column] || '' }}" disabled>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
